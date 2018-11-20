@@ -18,41 +18,28 @@ public class ModelComparator {
     }
 
     private static Comparator<Model> getNameComparator(@NotNull boolean descending) {
-        Comparator<Model> comparator;
-        if(!descending) {
-            comparator = Comparator.comparing(Model::getName);
-        } else {
-            comparator = (a, b) -> b.getName().compareTo(a.getName());
-        }
-        return comparator;
+        Comparator<Model> comparator = Comparator.comparing(Model::getName);
+        return checkDescending(comparator, descending);
     }
 
     private static Comparator<Model> getDateComparator(@NotNull boolean descending) {
-        Comparator<Model> comparator;
-        if(!descending) {
-            comparator = Comparator.comparing(Model::getDate);
-        } else {
-            comparator = (a, b) -> b.getDate().compareTo(a.getDate());
-        }
-        return comparator;
+        Comparator<Model> comparator = Comparator.comparing(Model::getDate);
+        return checkDescending(comparator, descending);
     }
 
     private static Comparator<Model> getValueComparator(@NotNull boolean descending) {
-        Comparator<Model> comparator;
-        if(!descending) {
-            comparator = Comparator.comparing(Model::getValue);
-        } else {
-            comparator = (a, b) -> b.getValue().compareTo(a.getValue());
-        }
-        return comparator;
+        Comparator<Model> comparator = Comparator.comparing(Model::getValue);
+        return checkDescending(comparator, descending);
     }
 
     private static Comparator<Model> getEnumComparator(@NotNull boolean descending) {
-        Comparator<Model> comparator;
-        if(!descending) {
-            comparator = Comparator.comparing(Model::getModelEnum);
-        } else {
-            comparator = (a, b) -> b.getModelEnum().toString().compareTo(a.getModelEnum().toString());
+        Comparator<Model> comparator = Comparator.comparing(a -> a.getModelEnum().toString());
+        return (checkDescending(comparator, descending));
+    }
+
+    private static Comparator<Model> checkDescending(Comparator<Model> comparator, boolean descending) {
+        if(descending) {
+            return comparator.reversed();
         }
         return comparator;
     }

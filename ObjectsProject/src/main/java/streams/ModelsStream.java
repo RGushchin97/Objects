@@ -4,10 +4,7 @@ import com.sun.istack.internal.Nullable;
 import models.Model;
 import models.ModelEnum;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ModelsStream {
@@ -35,16 +32,9 @@ public class ModelsStream {
                 .collect(Collectors.toList());
     }
 
+
     public Map<ModelEnum, List<Model>> getMapByEnum() {
-        Map<ModelEnum, List<Model>> modelsMap = new HashMap<>();
-        for(ModelEnum modelEnum : ModelEnum.getValues()) {
-            List<Model> modelsList = models.stream()
-                    .filter(m -> m.getModelEnum().equals(modelEnum))
-                    .collect(Collectors.toList());
-            if(!modelsList.isEmpty()) {
-                modelsMap.put(modelEnum, modelsList);
-            }
-        }
-        return modelsMap;
+        return models.stream()
+                .collect(Collectors.groupingBy(Model::getModelEnum));
     }
 }

@@ -9,9 +9,9 @@ import java.util.List;
 
 import static utils.RandomGenerator.getRandomModels;
 
-public class Task2 {
+public class CreatingMapFromListTask {
     public static void main(String[] args) {
-        int objectsCount = Integer.parseInt(PropertyReader.getProperty("objects.count"));
+        int objectsCount = PropertyReader.getIntProperty("objects.count");
         System.out.println("**********SECOND TASK**********");
         List<Model> models2 = getRandomModels(objectsCount);
         ModelsStream modelsStream2 = new ModelsStream(models2);

@@ -33,4 +33,11 @@ public class PropertyReader {
         return properties.getProperty(key);
     }
 
+    public static int getIntProperty(String key) {
+        return Integer.parseInt(getProperty(key));
+    }
+
+    public static boolean getBooleanProperty(String key) {
+        return Boolean.parseBoolean(getProperty(key));
+    }
 }
