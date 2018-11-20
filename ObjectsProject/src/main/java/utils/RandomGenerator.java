@@ -28,8 +28,8 @@ public class RandomGenerator {
     }
 
     private static ModelEnum getModelEnum() {
-        List<ModelEnum> values = ModelEnum.getValues();
-        return values.get(random.nextInt(values.size()));
+        ModelEnum[] values = ModelEnum.values();
+        return values[random.nextInt(values.length)];
     }
 
     public static List<Model> getRandomModels(int count) {
